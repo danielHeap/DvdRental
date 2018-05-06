@@ -28,9 +28,7 @@
 .movies-header {
     margin-bottom:1em;
 }
-.movies-header .input-group {
-    width: 100%;
-}
+
 
 .movies-header .input-group > div {
     margin-right: 2em;

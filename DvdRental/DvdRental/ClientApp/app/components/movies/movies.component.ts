@@ -19,6 +19,7 @@ export class MoviesComponent {
         new EventEmitter();
 
     constructor(http: Http, @Inject('BASE_URL') baseUrl: string) {
+
         http.get(baseUrl + 'api/Movies/GetAll').subscribe(result => {
             this.filteredMovies = this.movies = result.json() as Movie[];
         }, error => console.error(error));
