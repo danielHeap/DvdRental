@@ -194,7 +194,7 @@ namespace DvdRental.Services
                 Director = "Steven Spielberg",
                 Scenarist = "	Steven Zaillian",
                 ReleaseDate = new DateTime(1993, 11, 30),
-                Genres = new List<string>() { "Fantasy", "Przygodowy" },
+                Genres = new List<string>() { "Dramat", "Wojenny" },
                 Cast = new List<RoleModel>
                 {
                     {new RoleModel{Actor=liamNeeson, Name="Oskar Schindler"} },
@@ -211,6 +211,19 @@ namespace DvdRental.Services
         public IEnumerable<MovieModel> GetAllMovies()
         {
             return movies;
+        }
+
+        public List<string> GetAllGeneres()
+        {
+            var generes = new List<string>();
+            var result = movies.Select(x => x.Genres).ToList();
+            foreach(var item in result)
+            {
+                generes.AddRange(item);
+            }
+
+            generes = generes.Distinct().ToList();
+            return generes;
         }
     }
 }

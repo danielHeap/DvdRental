@@ -1,18 +1,28 @@
-﻿<div>
+﻿<div class="movies-header row">
     <h1>Dostępne filmy</h1>
 
-    <div class="simple-row">
-        <p>Wybierz film do wypożyczenia.</p>
-        <div>
-            <span class="glyphicon glyphicon-search"></span>
-            <input type="text" [(ngModel)]='listFilter' />
-            <span class="glyphicon glyphicon-remove" aria-hidden="true" (click)="removeTextFilter()"></span>
+    <div class="col-sm-6 col-md-4">
+        <div class="simple-row">
+            <p>Wybierz film do wypożyczenia.</p>
+            <div>
+                <span class="glyphicon glyphicon-search"></span>
+                <input type="text" [(ngModel)]='listFilter' />
+                <span class="glyphicon glyphicon-remove" aria-hidden="true" (click)="removeTextFilter()"></span>
+            </div>
         </div>
     </div>
-    <div *ngIf="added" class="alert alert-success" role="alert">{{addedMsg}}</div>
+    <div class="col-sm-6 col-md-8">
+        <div class="input-group">
+            <div *ngFor="let genere of generes" class="col-sm-6 col-md-4">
+                <input type="checkbox" aria-label="..." [checked]="genere.active" (change)="genere.active=!genere.active; genereChanged()">
+                <span>{{genere.name}}</span>
+            </div>
+        </div><!-- /input-group -->
+    </div>
 </div>
 <p *ngIf="!movies"><em>Loading...</em></p>
-<div>
+<div class="row"><div *ngIf="added" class="alert alert-success" role="alert">{{addedMsg}}</div></div>
+<div class="row">
     <div class="col-sm-6 col-md-4 movie" *ngFor="let movie of filteredMovies">
         <div class="thumbnail">
             <img class="movie-img" src="{{movie.photoPath}}">

@@ -1,7 +1,7 @@
 ﻿<h1>Wybierz jak chcesz odebrać płyty</h1>
 <div class="col-md-3">
 </div>
-<div class="col-md-6">
+<div id="rent" class="col-md-6">
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title ">Odbiór</h3>
@@ -17,11 +17,11 @@
             <h3 class="panel-title ">Odbiór osobisty</h3>
         </div>
         <div class="panel-body" *ngIf="personalCollection">
-            Płyty będą gotowe do odbioru w ciągu 20 minut.
-            Jeśli nie odbi
+            Płyty będą gotowe do odbioru w ciągu 20 minut.<br />
+            Rezerwacja jest ważna do końca jutrzejszego dnia.
         </div>
         <div class="panel-footer" *ngIf="personalCollection">
-            <div class="btn btn-primary" (click)="deliveryConfirm()">
+            <div class="btn btn-primary" (click)="personalConfirm()">
                 Zatwierdz
             </div>
 
@@ -41,27 +41,23 @@
                 </ul>
             </div>
             <br />
-            <div class="input-group">
+            <div [ngClass]="{'input-group alert': true, 'alert-success': firstNameValid==1, 'alert-danger': firstNameValid==-1}" role="alert">
                 <span class="input-group-addon" id="sizing-addon2">Imię</span>
                 <input type="text" class="form-control" placeholder="Imię" aria-describedby="sizing-addon2" [(ngModel)]="firstName">
             </div>
-            <br />
-            <div class="input-group">
+            <div [ngClass]="{'input-group alert': true, 'alert-success': lastNameValid==1, 'alert-danger': lastNameValid==-1}" role="alert">
                 <span class="input-group-addon" id="sizing-addon2">Nazwisko</span>
                 <input type="text" class="form-control" placeholder="Nazwisko" aria-describedby="sizing-addon2" [(ngModel)]="lastName">
             </div>
-            <br />
-            <div class="input-group">
+            <div [ngClass]="{'input-group alert': true, 'alert-success': postCodeValid==1, 'alert-danger': postCodeValid==-1}" role="alert">
                 <span class="input-group-addon" id="sizing-addon2">Kod pocztowy</span>
                 <input type="text" class="form-control" placeholder="Kod pocztowy" aria-describedby="sizing-addon2" [(ngModel)]="postCode">
             </div>
-            <br />
-            <div class="input-group">
+            <div [ngClass]="{'input-group alert': true, 'alert-success': cityValid==1, 'alert-danger': cityValid==-1}" role="alert">
                 <span class="input-group-addon" id="sizing-addon2">Miasto</span>
                 <input type="text" class="form-control" placeholder="Miasto" aria-describedby="sizing-addon2" [(ngModel)]="city">
             </div>
-            <br />
-            <div class="input-group">
+            <div [ngClass]="{'input-group alert': true, 'alert-success': streetValid==1, 'alert-danger': streetValid==-1}" role="alert">
                 <span class="input-group-addon" id="sizing-addon2">Ulica</span>
                 <input type="text" class="form-control" placeholder="Ulica" aria-describedby="sizing-addon2" [(ngModel)]="street">
             </div>

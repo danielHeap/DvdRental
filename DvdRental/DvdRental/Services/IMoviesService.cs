@@ -10,5 +10,6 @@ namespace DvdRental.Services
     {
         MovieModel GetMovie(int id);
         IEnumerable<MovieModel> GetAllMovies();
+        List<string> GetAllGeneres();
     }
 }

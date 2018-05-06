@@ -13,19 +13,37 @@
 }
 
 .simple-row {
-    display: flex;
+    /*display: flex;*/
     margin-bottom: 1em;
 }
 
 .simple-row > div {
-    margin-left: 3em;
+    /*margin-left: 3em;*/
     width: 30em;
 }
+
 .simple-row > div > input {
     width: 25em;
 }
-
-.movie{
-    height: 60em;
+.movies-header {
+    margin-bottom:1em;
+}
+.movies-header .input-group {
+    width: 100%;
 }
 
+.movies-header .input-group > div {
+    margin-right: 2em;
+    display: flex;
+    line-height: 1em;
+    text-align: center;
+    width: 33%;
+}
+
+.movies-header .input-group > div input {
+    margin-right: 0.5em;
+}
+
+.movie {
+    height: 60em;
+}

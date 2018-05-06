@@ -38,5 +38,11 @@ namespace DvdRental.Controllers
             var result = _movieService.GetAllMovies();
             return Ok(result);
         }
+
+        [HttpGet("[action]")]
+        public IActionResult GetGeneres()
+        {
+            return Ok(_movieService.GetAllGeneres());
+        }
     }
 }
