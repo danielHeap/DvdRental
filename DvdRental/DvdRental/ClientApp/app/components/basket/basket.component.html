@@ -1,0 +1,31 @@
+﻿
+<div>
+    <h1>Wybrane filmy</h1>
+</div>
+<p *ngIf="!movies"><em>Loading...</em></p>
+<div *ngIf="movies && movies.length>0">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 movie" *ngFor="let movie of movies">
+            <div class="thumbnail">
+                <img class="movie-img" src="{{movie.photoPath}}">
+                <div class="caption">
+                    <h3>{{ movie.name}}</h3>
+                    <div class="btn btn-primary"
+                         (click)="remove(movie.id)">
+                        Usuń z koszyka
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div [routerLink]="['/rent']" class="row btn btn-primary">
+        <span class='glyphicon glyphicon-ok'></span>
+        Wypożycz
+    </div>
+</div>
+
+<div *ngIf="movies && movies.length===0" class="row">
+    <div class="alert alert-warning" role="alert">Brak filmów w koszyku. Wybierz jakiś.</div>
+</div>

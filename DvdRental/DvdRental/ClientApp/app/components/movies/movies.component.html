@@ -1,14 +1,21 @@
-﻿<h1>Dostępnepne filmy</h1>
+﻿<div>
+    <h1>Dostępne filmy</h1>
 
-<p>Wybierz film do wypożyczenia.</p>
-<input type="text" [(ngModel)]="queryString" id="search" placeholder="Szukaj filmu">
+    <div class="simple-row">
+        <p>Wybierz film do wypożyczenia.</p>
+        <div>
+            <span class="glyphicon glyphicon-search"></span>
+            <input type="text" [(ngModel)]='listFilter' />
+            <span class="glyphicon glyphicon-remove" aria-hidden="true" (click)="removeTextFilter()"></span>
+        </div>
+    </div>
+    <div *ngIf="added" class="alert alert-success" role="alert">{{addedMsg}}</div>
+</div>
 <p *ngIf="!movies"><em>Loading...</em></p>
-
-
-<div class="row">
-    <div class="col-sm-6 col-md-4" *ngFor="let movie of movies">
+<div>
+    <div class="col-sm-6 col-md-4 movie" *ngFor="let movie of filteredMovies">
         <div class="thumbnail">
-            <img src="{{movie.photoPath}}">
+            <img class="movie-img" src="{{movie.photoPath}}">
             <div class="caption">
                 <h3>{{ movie.name}}</h3>
                 <ul class="list-group">
@@ -25,28 +32,35 @@
                         <div>{{ movie.scenarist }}</div>
                     </li>
                     <li class="list-group-item">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">Obsada</div>
-                            <table class="table">
-                                <thead>
-                                    <tr>
+                        <div>Gatunki:</div>
+                        <div> <span *ngFor="let genre of movie.genres">{{genre}}; </span></div>
+                    </li>
+
+                </ul>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Obsada</div>
+                    <table class="table">
+                        <thead>
+                            <tr>
                                 <th>Aktor</th>
                                 <th>Rola</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let cast of movie.cast">
-                                        <td>{{ cast.actor.firstName }} {{cast.actor.lastName}}</td>
-                                        <td>{{cast.name}}</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            
-                        </div>
-                    </li>
-                </ul>
-                <p><a href="#" class="btn btn-primary" role="button">Dodaj do koszyka</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let cast of movie.cast">
+                                <td>{{ cast.actor.firstName }} {{cast.actor.lastName}}</td>
+                                <td>{{cast.name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div> <div class="btn btn-primary"
+                            (click)="addToBasket(movie.name)">
+                    Dodaj do koszyka
+                </div>
             </div>
         </div>
+
     </div>
 </div>
+

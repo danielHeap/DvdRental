@@ -4,7 +4,8 @@
             <nav-menu></nav-menu>
         </div>
         <div class='col-sm-9 body-content'>
-            <router-outlet></router-outlet>
+            <router-outlet *ngIf="logged" (addedToBasket)="basketChanged($event)"></router-outlet>
+            <login  *ngIf="!logged" (addedToBasket)="loggin($event)"></login>
         </div>
     </div>
 </div>

@@ -7,18 +7,20 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
-import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
-import { CounterComponent } from './components/counter/counter.component';
 import { MoviesComponent } from './components/movies/movies.component';
+import { BasketComponent } from './components/basket/basket.component';
+import { RentComponent } from './components/rent/rent.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         NavMenuComponent,
-        CounterComponent,
-        FetchDataComponent,
         HomeComponent,
-        MoviesComponent
+        MoviesComponent,
+        BasketComponent,
+        RentComponent,
+        LoginComponent
     ],
     imports: [
         CommonModule,
@@ -27,9 +29,9 @@ import { MoviesComponent } from './components/movies/movies.component';
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
-            { path: 'counter', component: CounterComponent },
-            { path: 'fetch-data', component: FetchDataComponent },
             { path: 'movies', component: MoviesComponent },
+            { path: 'basket', component: BasketComponent },
+            { path: 'rent', component: RentComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]

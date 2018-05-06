@@ -1,50 +1,69 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, EventEmitter, Output } from '@angular/core';
 import { Http } from '@angular/http';
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Component({
     selector: 'movies',
-    templateUrl: './movies.component.html'
+    templateUrl: './movies.component.html',
+    styleUrls: ['../../shared/movie-modal.css']
 })
 export class MoviesComponent {
     public movies: Movie[];
+    public filteredMovies: Movie[];
+    public added: boolean = false;
+    public addedMsg: string;
+    @Output() addedToBasket: EventEmitter<number> =
+        new EventEmitter();
 
     constructor(http: Http, @Inject('BASE_URL') baseUrl: string) {
         http.get(baseUrl + 'api/Movies/GetAll').subscribe(result => {
-            this.movies = result.json() as Movie[];
+            this.filteredMovies = this.movies = result.json() as Movie[];
         }, error => console.error(error));
     }
-}
 
-@Pipe({
-    name: 'FilterPipe',
-})
-export class FilterPipe implements PipeTransform {
-    transform(value: any, input: string) {
-        if (input) {
-            input = input.toLowerCase();
-            return value.filter(function (el: any) {
-                return el.toLowerCase().indexOf(input) > -1;
-            })
-        }
-        return value;
+    addToBasket(name: string): void {
+        this.added = true;
+        this.addedMsg = `Dodano do koszyka: ${name}`;
+
+        this.addedToBasket.emit(1);
+    }
+
+    _listFilter: string;
+    get listFilter(): string {
+        return this._listFilter;
+    }
+    set listFilter(value: string) {
+        this._listFilter = value;
+        this.filteredMovies = this.listFilter ? this.performFilter() : this.movies;
+    }
+
+    performFilter(): Movie[] {
+        var filterBy = this.listFilter.toLocaleLowerCase();
+        return this.movies.filter((product: Movie) =>
+            product.name.toLocaleLowerCase().indexOf(filterBy) !== -1);
+    }
+    removeTextFilter(): void {
+        this.listFilter = "";
     }
 }
 
-interface Actor {
+
+export interface Actor {
     firstName: string;
     lastName: string;
 }
-interface Role {
+export interface Role {
     actor: Actor;
     name: string;
     type: string;
 }
-interface Movie {
+export interface Movie {
+    id: number;
     name: string;
     photoPath: string;
     releaseDate: Date;
     directior: string;
     scenarist: string;
+    genres: any;
     cast: any;
 }

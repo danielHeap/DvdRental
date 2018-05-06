@@ -24,8 +24,14 @@
                     </a>
                 </li>
                 <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/movies']">
-                        <span class='glyphicon glyphicon-th-list'></span> Filmy
+                    <a [routerLink]="['/basket']">
+                        <span class='glyphicon glyphicon-th-list'></span> Koszyk
+                        <span class="badge">{{basketElements}}</span>
+                    </a>
+                </li>
+                <li [routerLinkActive]="['link-active']">
+                    <a [routerLink]="['/rent']">
+                        <span class='glyphicon glyphicon-th-list'></span> Wypożycz
                     </a>
                 </li>
             </ul>

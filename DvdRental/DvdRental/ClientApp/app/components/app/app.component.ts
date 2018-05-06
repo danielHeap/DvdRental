@@ -6,4 +6,9 @@ import { Component } from '@angular/core';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+    logged: boolean = false;
+
+    loggin(event: any): void {
+        this.logged = true;
+    }
 }

@@ -1,0 +1,76 @@
+﻿<h1>Wybierz jak chcesz odebrać płyty</h1>
+<div class="col-md-3">
+</div>
+<div class="col-md-6">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title ">Odbiór</h3>
+
+        </div>
+        <div class="panel-body">
+            <div class="btn-group" role="group" aria-label="...">
+                <button type="button" class="btn btn-default" (click)="deliveryClick()">Dostawa do domu</button>
+                <button type="button" class="btn btn-default" (click)="personalClick()">Odbiór osobisty</button>
+            </div>
+        </div>
+        <div class="panel-heading" *ngIf="personalCollection">
+            <h3 class="panel-title ">Odbiór osobisty</h3>
+        </div>
+        <div class="panel-body" *ngIf="personalCollection">
+            Płyty będą gotowe do odbioru w ciągu 20 minut.
+            Jeśli nie odbi
+        </div>
+        <div class="panel-footer" *ngIf="personalCollection">
+            <div class="btn btn-primary" (click)="deliveryConfirm()">
+                Zatwierdz
+            </div>
+
+        </div>
+        <div class="panel-heading" *ngIf="delivery">
+            <h3 class="panel-title ">Dane do wypożyczenia</h3>
+        </div>
+        <div class="panel-body" *ngIf="delivery">
+            <div class="dropdown">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    Zapisane adresy
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <li><a (click)="home()">Dom</a></li>
+                    <li><a (click)="work()">Praca</a></li>
+                </ul>
+            </div>
+            <br />
+            <div class="input-group">
+                <span class="input-group-addon" id="sizing-addon2">Imię</span>
+                <input type="text" class="form-control" placeholder="Imię" aria-describedby="sizing-addon2" [(ngModel)]="firstName">
+            </div>
+            <br />
+            <div class="input-group">
+                <span class="input-group-addon" id="sizing-addon2">Nazwisko</span>
+                <input type="text" class="form-control" placeholder="Nazwisko" aria-describedby="sizing-addon2" [(ngModel)]="lastName">
+            </div>
+            <br />
+            <div class="input-group">
+                <span class="input-group-addon" id="sizing-addon2">Kod pocztowy</span>
+                <input type="text" class="form-control" placeholder="Kod pocztowy" aria-describedby="sizing-addon2" [(ngModel)]="postCode">
+            </div>
+            <br />
+            <div class="input-group">
+                <span class="input-group-addon" id="sizing-addon2">Miasto</span>
+                <input type="text" class="form-control" placeholder="Miasto" aria-describedby="sizing-addon2" [(ngModel)]="city">
+            </div>
+            <br />
+            <div class="input-group">
+                <span class="input-group-addon" id="sizing-addon2">Ulica</span>
+                <input type="text" class="form-control" placeholder="Ulica" aria-describedby="sizing-addon2" [(ngModel)]="street">
+            </div>
+        </div>
+        <div class="panel-footer" *ngIf="delivery">
+            <div class="btn btn-primary" (click)="deliveryConfirm()">
+                Zatwierdz
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+﻿<div *ngIf="!loggedIn">
+    <h1>Wypożyczalnia płyt DVD</h1>
+
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-6">
+        <div class="fail-notice">
+            <div *ngIf="loginFailed" class="alert alert-danger" role="alert">Błędne dane logowania</div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title ">Logowanie</h3>
+            </div>
+            <div class="panel-body">
+                <div class="input-group">
+                    <span class="input-group-addon" id="sizing-addon2">Login</span>
+                    <input type="text" class="form-control" placeholder="Login" aria-describedby="sizing-addon2" [(ngModel)]="loginField" (keyup.enter)="login()">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon" id="sizing-addon2">Hasło</span>
+                    <input type="password" class="form-control" placeholder="Hasło" aria-describedby="sizing-addon2" [(ngModel)]="passwordField" (keyup.enter)="login()">
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="btn btn-primary" (click)="login()">
+                    Zaloguj
+                </div>
+
+                <div class="btn btn-primary">
+                    Zarejestruj się
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<router-outlet *ngIf="loggedIn"> </router-outlet>
+
+

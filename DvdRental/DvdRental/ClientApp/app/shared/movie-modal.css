@@ -1,0 +1,31 @@
+﻿.caption .list-group-item > div:first-of-type {
+    width: 10em;
+    float: left;
+}
+
+.caption .list-group-item > div:last-of-type {
+    width: auto;
+    float: left;
+}
+
+.caption .list-group-item {
+    height: 3em;
+}
+
+.simple-row {
+    display: flex;
+    margin-bottom: 1em;
+}
+
+.simple-row > div {
+    margin-left: 3em;
+    width: 30em;
+}
+.simple-row > div > input {
+    width: 25em;
+}
+
+.movie{
+    height: 60em;
+}
+
