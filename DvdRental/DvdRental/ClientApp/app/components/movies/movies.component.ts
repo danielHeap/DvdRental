@@ -2,6 +2,7 @@ import { Component, Inject, EventEmitter, Output } from '@angular/core';
 import { Http } from '@angular/http';
 import { Pipe, PipeTransform } from '@angular/core';
 import { and } from '@angular/router/src/utils/collection';
+import { Logger } from '../../shared/logger';
 
 @Component({
     selector: 'movies',
@@ -18,8 +19,10 @@ export class MoviesComponent {
     @Output() addedToBasket: EventEmitter<number> =
         new EventEmitter();
 
-    constructor(http: Http, @Inject('BASE_URL') baseUrl: string) {
+    logger: Logger = new Logger("movies");
 
+    constructor(http: Http, @Inject('BASE_URL') baseUrl: string) {
+        
         http.get(baseUrl + 'api/Movies/GetAll').subscribe(result => {
             this.filteredMovies = this.movies = result.json() as Movie[];
         }, error => console.error(error));
@@ -36,7 +39,7 @@ export class MoviesComponent {
     addToBasket(name: string): void {
         this.added = true;
         this.addedMsg = `Dodano do koszyka: ${name}`;
-
+        this.logger.log(`Dodano do koszyka film ${name}`);
         this.addedToBasket.emit(1);
     }
 

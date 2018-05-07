@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { Logger } from '../../shared/logger';
 
 @Component({
     selector: 'login',
@@ -13,21 +14,24 @@ export class LoginComponent {
     loginFailed: boolean = false;
     loggedIn: boolean = false;
 
+    logger: Logger = new Logger("login");
+
     onKey(event: any) {
         console.log(event.target.value);
     }
 
     login(): void {
         if (this.passwordField == "123" && this.loginField == "klient") {
-            console.log(this.loginField + " " + this.passwordField);
             this.loggedIn = true;
+            this.logger.log(`OK| ${this.loginField}: ${this.passwordField}`);
         }
         else if (this.passwordField == "123" && this.loginField == "pracownik") {
-            console.log(this.loginField + " " + this.passwordField);
             this.loggedIn = true;
+            this.logger.log(`OK| ${this.loginField}: ${this.passwordField}`);
         }
         else {
             this.loginFailed = true;
+            this.logger.log(`ERROR| błędne dane logowania| ${this.loginField}: ${this.passwordField}`);
         }
     }
 }

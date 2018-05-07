@@ -13,24 +13,24 @@
         <div class='navbar-collapse collapse'>
             <ul class='nav navbar-nav'>
                 <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/home']">
+                    <a [routerLink]="['/home']" (click)="log('Strona główna');">
                         <span class='glyphicon glyphicon-home'></span> Strona główna
                     </a>
                 </li>
 
                 <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/movies']">
+                    <a [routerLink]="['/movies']" (click)="log('Filmy');">
                         <span class='glyphicon glyphicon-th-list'></span> Filmy
                     </a>
                 </li>
                 <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/basket']">
+                    <a [routerLink]="['/basket']" (click)="log('Koszyk');">
                         <span class='glyphicon glyphicon-th-list'></span> Koszyk
                         <span class="badge">{{basketElements}}</span>
                     </a>
                 </li>
                 <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/rent']">
+                    <a [routerLink]="['/rent']" (click)="log('Wypożycz');">
                         <span class='glyphicon glyphicon-th-list'></span> Wypożycz
                     </a>
                 </li>

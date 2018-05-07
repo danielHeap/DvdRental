@@ -1,4 +1,5 @@
 ﻿import { Component } from "@angular/core";
+import { Logger } from "../../shared/logger";
 
 
 @Component({
@@ -7,6 +8,7 @@
     styleUrls: ['./rent.component.css']
 })
 export class RentComponent {
+    logger: Logger = new Logger("login");
     delivery: boolean = false;
     personalCollection: boolean = false;
     firstName: string;
@@ -24,18 +26,23 @@ export class RentComponent {
     personalClick(): void {
         this.delivery = false;
         this.personalCollection = true;
+        this.logger.log(`Wybrano odbiór osobisty`);
     }
     deliveryClick(): void {
         this.delivery = true;
         this.personalCollection = false;
+        this.logger.log(`Wybrano dostawę`);
     }
 
     personalConfirm(): void {
+        this.logger.log(`Wypożyczono z odbiórem osobistym`);
         alert("Wypożyczono");
     }
     deliveryConfirm(): void {
-        if (this.validateDelivery())
+        if (this.validateDelivery()) {
             alert("Wypożyczono");
+            this.logger.log(`Wypożyczono z opcją dostawy`);
+        }
     }
 
     validateDelivery(): boolean {
@@ -50,6 +57,11 @@ export class RentComponent {
             success = false;
         if (!this.streetValidation())
             success = false;
+
+        if (success)
+            this.logger.log(`Walidacja udana`);
+        else
+            this.logger.log(`Walidacja nieudana`);
 
         return success;
     }
@@ -111,6 +123,8 @@ export class RentComponent {
         this.city = "Kielce";
         this.street = "Sandomierska 500";
         this.validateDelivery();
+
+        this.logger.log(`Wybrano adres domowy`);
     }
     work(): void {
 
@@ -120,5 +134,7 @@ export class RentComponent {
         this.city = "Kielce";
         this.street = "Lódzka 1200";
         this.validateDelivery();
+
+        this.logger.log(`Wybrano adres firmowy`);
     }
 }

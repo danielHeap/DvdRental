@@ -28,11 +28,13 @@
   <ItemGroup>
     <None Remove="ClientApp\app\components\basket\basket.component.ts" />
     <None Remove="ClientApp\app\components\rent\rent.component.ts" />
+    <None Remove="ClientApp\app\shared\logger.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\components\basket\basket.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\rent\rent.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\logger.ts" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">

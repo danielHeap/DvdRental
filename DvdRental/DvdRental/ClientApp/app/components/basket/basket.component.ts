@@ -2,6 +2,7 @@
 import { Http } from '@angular/http';
 import { Pipe, PipeTransform } from '@angular/core';
 import { Actor, Role, Movie } from '../movies/movies.component';
+import { Logger } from '../../shared/logger';
 
 @Component({
     selector: 'basket',
@@ -9,6 +10,7 @@ import { Actor, Role, Movie } from '../movies/movies.component';
 })
 export class BasketComponent implements OnChanges{
     public movies: Movie[];
+    logger: Logger = new Logger("basket");
     constructor(http: Http, @Inject('BASE_URL') baseUrl: string) {
         http.get(baseUrl + 'api/Basket/GetBasket').subscribe(result => {
             this.movies = result.json() as Movie[];
@@ -16,8 +18,8 @@ export class BasketComponent implements OnChanges{
     }
 
     remove(id: number): void {
-        
-        console.log(`deleting ${id}`);
+
+        this.logger.log(`usuwanie filmu o id: ${id}`);
         this.movies = this.performFilter(id);
     }
 
