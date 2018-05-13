@@ -11,11 +11,15 @@ export class RentComponent {
     logger: Logger = new Logger("login");
     delivery: boolean = false;
     personalCollection: boolean = false;
-    firstName: string;
-    lastName: string;
-    postCode: string;
-    city: string;
-    street: string;
+
+    rentSuccessful: boolean = false;
+    rentFailed: boolean = false;
+
+    firstName: string = "";
+    lastName: string = "";
+    postCode: string = "";
+    city: string = "";
+    street: string = "";
 
     firstNameValid: number = 0;
     lastNameValid: number = 0;
@@ -36,12 +40,20 @@ export class RentComponent {
 
     personalConfirm(): void {
         this.logger.log(`Wypożyczono z odbiórem osobistym`);
-        alert("Wypożyczono");
+        //alert("Wypożyczono");
+        this.rentSuccessful = true;
+        this.rentFailed = false;
     }
     deliveryConfirm(): void {
         if (this.validateDelivery()) {
-            alert("Wypożyczono");
+            //alert("Wypożyczono");
             this.logger.log(`Wypożyczono z opcją dostawy`);
+            this.rentSuccessful = true;
+            this.rentFailed = false;
+        }
+        else {
+            this.rentFailed = true;
+            this.rentSuccessful = false;
         }
     }
 

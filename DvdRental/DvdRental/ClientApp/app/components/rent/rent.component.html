@@ -9,8 +9,8 @@
         </div>
         <div class="panel-body">
             <div class="btn-group" role="group" aria-label="...">
-                <button type="button" class="btn btn-default" (click)="deliveryClick()">Dostawa do domu</button>
-                <button type="button" class="btn btn-default" (click)="personalClick()">Odbiór osobisty</button>
+                <button type="button" [ngClass]="{'btn btn-default': true, 'active': delivery }" (click)="deliveryClick()">Dostawa do domu</button>
+                <button type="button" [ngClass]="{'btn btn-default': true, 'active': personalCollection}" (click)="personalClick()">Odbiór osobisty</button>
             </div>
         </div>
         <div class="panel-heading" *ngIf="personalCollection">
@@ -21,7 +21,7 @@
             Rezerwacja jest ważna do końca jutrzejszego dnia.
         </div>
         <div class="panel-footer" *ngIf="personalCollection">
-            <div class="btn btn-primary" (click)="personalConfirm()">
+            <div class="btn btn-primary" (click)="personalConfirm()" data-toggle="modal" data-target="#myModal">
                 Zatwierdz
             </div>
 
@@ -62,11 +62,32 @@
                 <input type="text" class="form-control" placeholder="Ulica" aria-describedby="sizing-addon2" [(ngModel)]="street">
             </div>
         </div>
-        <div class="panel-footer" *ngIf="delivery">
-            <div class="btn btn-primary" (click)="deliveryConfirm()">
+        <div class="panel-footer" *ngIf="delivery" >
+            <div class="btn btn-primary" (click)="deliveryConfirm()" data-toggle="modal" data-target="#myModal">
                 Zatwierdz
             </div>
 
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Wypożyczenie</h4>
+            </div>
+            <div *ngIf="rentSuccessful" class="modal-body">
+                Wypożyczono.
+            </div>
+            <div *ngIf="rentFailed" class="modal-body">
+                Podaj poprawne dane.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Zamknij</button>
+            </div>
         </div>
     </div>
 </div>

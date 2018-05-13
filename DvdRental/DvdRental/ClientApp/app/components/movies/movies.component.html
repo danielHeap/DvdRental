@@ -20,9 +20,38 @@
                 </div>
             </div>
         </div>
+        <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Sortuj według <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a (click)="performTitleSort() ">Tytuł</a></li>
+                <li><a (click)="performDateSort() ">Data premiery</a></li>
+                <li><a (click)="performDirectorSort() ">Reżyser</a></li>
+                <li><a (click)="performScenaristSort() ">Scenarzysta</a></li>
+            </ul>
+
+            <a (click)="invertedSort = false; "><span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true" style="padding-left:1em; font-size: 2em" ></span></a>
+            <a (click)="invertedSort = true;"><span class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true" style="padding-left:1em; font-size: 2em" ></span></a>
+        </div>
     </div>
     <p *ngIf="!movies"><em>Loading...</em></p>
     <div class="row"><div *ngIf="added" class="alert alert-success" role="alert">{{addedMsg}}</div></div>
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <li>
+                <a aria-label="Previous" (click)="prevLabel()">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li *ngFor="let index of navLabels" [ngClass]="{'active' : index == currentLabel}"><a (click)="currentLabel = index;">{{index}} </a></li>
+            <li>
+                <a aria-label="Next" (click)="nextLabel()">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
     <div class="row">
         <div class="col-sm-12 col-md-4 movie" *ngFor="let movie of filteredMovies">
             <div class="thumbnail">
@@ -65,7 +94,8 @@
                             </tbody>
                         </table>
 
-                    </div> <div class="btn btn-primary"
+                    </div> 
+                    <div class="btn btn-primary"
                                 (click)="addToBasket(movie.name)">
                         Dodaj do koszyka
                     </div>

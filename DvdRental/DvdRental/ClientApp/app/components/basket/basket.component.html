@@ -10,17 +10,22 @@
                 <img class="movie-img" src="{{movie.photoPath}}">
                 <div class="caption">
                     <h3>{{ movie.name}}</h3>
-                    <div class="btn btn-primary"
-                         (click)="remove(movie.id)">
+                    <button class="btn btn-primary"
+                            (click)="remove(movie.id)">
                         Usuń z koszyka
-                    </div>
+                    </button>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" (click)="setModal(movie)">
+                        Pokaż szczegóły
+                    </button>
+
                 </div>
             </div>
 
         </div>
     </div>
 
-    <div [routerLink]="['/rent']" class="row btn btn-primary">
+    <div [routerLink]="['/rent']" class="row btn btn-primary" (click)="update();">
         <span class='glyphicon glyphicon-ok'></span>
         Wypożycz
     </div>
@@ -28,4 +33,58 @@
 
 <div *ngIf="movies && movies.length===0" class="row">
     <div class="alert alert-warning" role="alert">Brak filmów w koszyku. Wybierz jakiś.</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">{{activeMovie.name}}</h4>
+            </div>
+            <div class="modal-body">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <div>Premiera:</div>
+                        <div>{{activeMovie.releaseDate | date: 'dd/MM/yyyy'}}</div>
+                    </li>
+                    <li class="list-group-item">
+                        <div>Reżyser:</div>
+                        <div> {{activeMovie.director}}</div>
+                    </li>
+                    <li class="list-group-item">
+                        <div>Scenarzysta: </div>
+                        <div>{{activeMovie.scenarist}}</div>
+                    </li>
+                    <li class="list-group-item">
+                        <div>Gatunki:</div>
+                        <div> <span *ngFor="let genre of activeMovie.genres">{{genre}}; </span></div>
+                    </li>
+
+                </ul>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Obsada</div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Aktor</th>
+                                <th>Rola</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let cast of activeMovie.cast">
+                                <td>{{ cast.actor.firstName }} {{cast.actor.lastName}}</td>
+                                <td>{{cast.name}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Zamknij</button>
+            </div>
+        </div>
+    </div>
 </div>

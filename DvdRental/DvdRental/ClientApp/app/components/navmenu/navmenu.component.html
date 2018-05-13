@@ -19,20 +19,23 @@
                 </li>
 
                 <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/movies']" (click)="log('Filmy');">
+                    <a [routerLink]="['/movies']" (click)="log('Filmy'); ">
                         <span class='glyphicon glyphicon-th-list'></span> Filmy
                     </a>
                 </li>
                 <li [routerLinkActive]="['link-active']">
                     <a [routerLink]="['/basket']" (click)="log('Koszyk');">
                         <span class='glyphicon glyphicon-th-list'></span> Koszyk
-                        <span class="badge">{{basketElements}}</span>
+                        <span *ngIf="basketElements>0" class="badge">{{basketElements}}</span>
                     </a>
                 </li>
                 <li [routerLinkActive]="['link-active']">
-                    <a [routerLink]="['/rent']" (click)="log('Wypożycz');">
+                    <a [routerLink]="['/rent']" (click)="log('Wypożycz'); ">
                         <span class='glyphicon glyphicon-th-list'></span> Wypożycz
                     </a>
+                </li>
+                <li  *ngIf="loggedIn">
+                    <a [routerLink]="['/home']" (click)="logOut()"> <span class="glyphicon glyphicon-off" aria-hidden="true" ></span>Wyloguj</a>
                 </li>
             </ul>
         </div>

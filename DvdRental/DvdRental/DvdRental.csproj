@@ -28,12 +28,16 @@
   <ItemGroup>
     <None Remove="ClientApp\app\components\basket\basket.component.ts" />
     <None Remove="ClientApp\app\components\rent\rent.component.ts" />
+    <None Remove="ClientApp\app\services\login.service.ts" />
+    <None Remove="ClientApp\app\services\movie.service.ts" />
     <None Remove="ClientApp\app\shared\logger.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\components\basket\basket.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\rent\rent.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\login.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\movie.service.ts" />
     <TypeScriptCompile Include="ClientApp\app\shared\logger.ts" />
   </ItemGroup>
 
