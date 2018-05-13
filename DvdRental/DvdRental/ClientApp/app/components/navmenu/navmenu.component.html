@@ -34,10 +34,13 @@
                         <span class='glyphicon glyphicon-th-list'></span> Wypożycz
                     </a>
                 </li>
-                <li  *ngIf="loggedIn">
-                    <a [routerLink]="['/home']" (click)="logOut()"> <span class="glyphicon glyphicon-off" aria-hidden="true" ></span>Wyloguj</a>
+                <li *ngIf="loggedIn">
+                    <a [routerLink]="['/home']" (click)="logOut()"> <span class="glyphicon glyphicon-off" aria-hidden="true"></span>Wyloguj</a>
                 </li>
             </ul>
+        </div>
+        <div id="mybutton">
+            <p class="text-info " style="bottom:0; ">&copy; 2018 Daniel Dymiński</p>
         </div>
     </div>
 </div>

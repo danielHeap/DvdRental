@@ -47,7 +47,5 @@ export class LoginComponent implements OnInit {
                 this.loggedIn = this._loginService.loggedIn;
             }
         });
-
-        this._loginService.logIn();
     }
 }
